@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ## 2. Data Preparation
 Our experiment analysis data has been in `./data/experiment_data.xlsx`. You can use your own data and put it in the same folder.
 
-## 3. Inference
+## 3. Causal Inference
 ```bash
 python main.py --mode custom --data_path ./data/experiment_data.xlsx --output_variable all --save_path './save.xlsx'
 ```
