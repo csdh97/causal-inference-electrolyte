@@ -48,7 +48,7 @@ if __name__ == "__main__":
         treatments, outcomes = extract_treatment_outcome(causal_graph)
         assert len(treatments) == 1
         all_pair_treatment_outcome = [(x, y) for x in treatments[0] for y in outcomes]
-        
+
         for edge in tqdm(all_pair_treatment_outcome, desc='inference on all variables'):
 
             model = CausalModel(
@@ -66,9 +66,12 @@ if __name__ == "__main__":
 
             save_results.append([edge[0], edge[1], estimate_value])
 
-    elif isinstance(output_variable, list):
+    elif isinstance(output_variable, str):
         
-        for variable in tqdm(output_variable, desc='inference on specific variables'):
+        items = [x.strip() for x in output_variable.split(',')]
+        all_pair_treatment_outcome = [items[i:i+2] for i in range(0, len(items), 2)]
+
+        for variable in tqdm(all_pair_treatment_outcome, desc='inference on specific variables'):
 
             model = CausalModel(
             data = raw_input,
