@@ -71,12 +71,12 @@ if __name__ == "__main__":
         items = [x.strip() for x in output_variable.split(',')]
         all_pair_treatment_outcome = [items[i:i+2] for i in range(0, len(items), 2)]
 
-        for variable in tqdm(all_pair_treatment_outcome, desc='inference on specific variables'):
+        for edge in tqdm(all_pair_treatment_outcome, desc='inference on specific variables'):
 
             model = CausalModel(
             data = raw_input,
-            treatment=variable[0],
-            outcome=variable[1],
+            treatment=edge[0],
+            outcome=edge[1],
             graph=causal_graph
             )
 
@@ -85,6 +85,7 @@ if __name__ == "__main__":
                     method_name="backdoor.linear_regression")
 
             estimate_value = causal_estimate.value
+            save_results.append([edge[0], edge[1], estimate_value])
 
     df = pd.DataFrame(save_results, columns=["treatment", "outcome", "causal estimate value"])
     df.to_excel(save_path, index=False)
