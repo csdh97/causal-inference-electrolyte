@@ -15,7 +15,7 @@ Our experiment analysis data has been in `./data/experiment_data.xlsx`. You can 
 
 ## 3. Inference
 ```bash
-python main.py --mode custom --data_path ./data/experiment_data.xlsx --output_variable all
+python main.py --mode custom --data_path ./data/experiment_data.xlsx --output_variable all --save_path './save.xlsx'
 ```
 The results would be saved to the `./save.xlsx`, and you can change the `--output_variable` to choose your desired treatments and outcomes to obtain the results.
 
